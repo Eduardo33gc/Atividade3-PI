@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block center %}
+
+<section class="py-5">
+    <div class="container d-flex px-4 px-lg-5 my-5">
+        <div class="mb-6">
+            <img src="/static/css/img/finecap.jpg" class="img-fluid" alt="Imagem responsiva">
+        </div>
+        <div class="card mb-6" style="width: 18rem;">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"> <strong>Empresa: </strong>{{ reserva.nome_empresa }}</li>
+                <li class="list-group-item"> <strong>CNPJ: </strong>{{ reserva.cnpj }}</li>
+                <li class="list-group-item"><strong>Categoria: </strong>{{ reserva.categoria_empresa }}</li>
+
+                <li class="list-group-item"><strong>Quitado: </strong>
+                    {% if reserva.quitado %}
+                    sim
+                    {% else %}
+                    não
+                    {% endif %}
+                </li>
+                <li class="list-group-item"><strong>Stand: </strong>{{ reserva.stand }}</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

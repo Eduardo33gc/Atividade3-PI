@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block center %}
+
+<div class="container px-4 px-lg-5 mt-5 mb-5">
+    
+    <h2>Formulário para reserva</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+
+</div>
+
+{% endblock %}
