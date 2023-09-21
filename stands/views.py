@@ -19,6 +19,11 @@ def reserva_criar(request):
 
 def reserva_listar(request):
     reservas = Reserva.objects.all().order_by('data_reserva')
+    nome_empresa = request.GET.get("nome_empresa")
+    quitado = request.GET.get("quitado")
+    valor = request.GET.get("valor")
+    data_reserva = request.GET.get("data_reserva")
+
     context ={
         'reservas': reservas
     }

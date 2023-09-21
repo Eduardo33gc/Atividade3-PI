@@ -6,6 +6,17 @@
 
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-3">
+
+        <form action="" method="GET">
+            <div class="input-group-prepend">
+                <input class="form-control md-3" placeholder="Nome da empresa" type="text" name="nome_empresa">
+                <input class="form-control md-3" placeholder="Quitado" type="checkbox" name="quitado">
+                <input class="form-control md-3" placeholder="Valor do stand" type="text" name="valor">
+                <input class="form-control md-3" placeholder="Data da reserva" type="date" name="data_reserva">
+                <button type="submit" class="btn-outline-dark">Buscar</button>
+            </div>
+        </form>
+
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 row-cols-sx-1 justify-content-center">
             {% for reserva in reservas %}
             <div class="col mb-5">

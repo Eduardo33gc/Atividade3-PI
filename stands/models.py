@@ -22,7 +22,7 @@ class Reserva(models.Model):
     categoria_empresa = models.CharField(max_length=200, choices=CATEGORIA, verbose_name='Categoria da empresa')
     quitado = models.BooleanField(default=False)
     stand = models.OneToOneField(Stand,on_delete=models.CASCADE)
-    data_reserva = models.DateTimeField(auto_now_add=True)
+    data_reserva = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.nome_empresa
