@@ -5,14 +5,19 @@
 <!-- Section-->
 
 <section class="py-5">
-    <div class="container px-4 px-lg-5 mt-3">
+    <div class="container px-4 px-lg-5 mt-3 mb-3">
 
         <form action="" method="GET">
             <div class="input-group-prepend">
-                <input class="form-control md-3" placeholder="Nome da empresa" type="text" name="nome_empresa">
-                <input class="form-control md-3" placeholder="Quitado" type="checkbox" name="quitado">
-                <input class="form-control md-3" placeholder="Valor do stand" type="text" name="valor">
-                <input class="form-control md-3" placeholder="Data da reserva" type="date" name="data_reserva">
+                <input class="form-control md-2" placeholder="Nome da empresa" type="text" name="nome_empresa">
+                <div class="form-check mx-2 md-2">
+                    <input class="form-check-input"  type="checkbox" id="gridCheck" value="True" name="quitado">
+                    <label for="form-label">Quitado</label>
+                    <input class="form-check-input"  type="checkbox" id="gridCheck" value="False" name="naoquitado">
+                    <label for="form-label">Não quitado</label>
+                </div>
+                <input class="form-control md-2" placeholder="Valor do stand" type="text" name="valor">
+                <input class="form-control md-2" placeholder="Data da reserva" type="date" name="data_reserva">
                 <button type="submit" class="btn-outline-dark">Buscar</button>
             </div>
         </form>

@@ -2,7 +2,6 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Reserva
 from .forms import ReservaForm
 
-# Create your views here.
 
 def reserva_criar(request):
     if request.method == 'POST':
@@ -19,20 +18,27 @@ def reserva_criar(request):
 
 def reserva_listar(request):
     reservas = Reserva.objects.all().order_by('data_reserva')
-    if (request.GET.get('nome_empresa')):
+    nome_empresa = request.GET.get('nome_empresa')
+    valor = request.GET.get('valor')
+    quitado = request.GET.get('quitado')
+    naoquitado = request.GET.get('naoquitado')
+    data_reserva = request.GET.get('data_reserva')
+
+
+    if nome_empresa:
         reservas = reservas.filter(
-            nome_empresa__contains=request.GET.get('nome_empresa'))
-    if (request.GET.get('naoquitado')) and request.GET.get(False):
+            nome_empresa__icontains=nome_empresa)
+    if naoquitado and request.GET.get(False):
         pass
     else:
-        if (request.GET.get('quitado')):
+        if quitado:
             reservas = reservas.filter(quitado=True)
-        if (request.GET.get('naoquitado')):
+        if naoquitado:
             reservas = reservas.filter(quitado=False)
-    if (request.GET.get('valor')):
-        reservas = reservas.filter(stand__valor=request.GET.get('valor'))
-    if (request.GET.get('data_reserva')):
-        reservas = reservas.filter(stand__date=request.GET.get('data'))
+    if valor:
+        reservas = reservas.filter(stand__valor=valor)
+    if data_reserva:
+        reservas = reservas.filter(data_reserva=data_reserva)
 
     context ={
         'reservas': reservas
