@@ -19,10 +19,20 @@ def reserva_criar(request):
 
 def reserva_listar(request):
     reservas = Reserva.objects.all().order_by('data_reserva')
-    nome_empresa = request.GET.get("nome_empresa")
-    quitado = request.GET.get("quitado")
-    valor = request.GET.get("valor")
-    data_reserva = request.GET.get("data_reserva")
+    if (request.GET.get('nome_empresa')):
+        reservas = reservas.filter(
+            nome_empresa__contains=request.GET.get('nome_empresa'))
+    if (request.GET.get('naoquitado')) and request.GET.get(False):
+        pass
+    else:
+        if (request.GET.get('quitado')):
+            reservas = reservas.filter(quitado=True)
+        if (request.GET.get('naoquitado')):
+            reservas = reservas.filter(quitado=False)
+    if (request.GET.get('valor')):
+        reservas = reservas.filter(stand__valor=request.GET.get('valor'))
+    if (request.GET.get('data_reserva')):
+        reservas = reservas.filter(stand__date=request.GET.get('data'))
 
     context ={
         'reservas': reservas
