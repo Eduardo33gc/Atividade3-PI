@@ -53,9 +53,31 @@ def detalhe_reserva(request,id):
     return render(request,'stands/detalhe.html',context)
 
 def reserva_edicao(request):
-    reservas = Reserva.objects.all()
+    reservas = Reserva.objects.all().order_by('data_reserva')
+    nome_empresa = request.GET.get('nome_empresa')
+    valor = request.GET.get('valor')
+    quitado = request.GET.get('quitado')
+    naoquitado = request.GET.get('naoquitado')
+    data_reserva = request.GET.get('data_reserva')
+
+
+    if nome_empresa:
+        reservas = reservas.filter(
+            nome_empresa__icontains=nome_empresa)
+    if naoquitado and request.GET.get(False):
+        pass
+    else:
+        if quitado:
+            reservas = reservas.filter(quitado=True)
+        if naoquitado:
+            reservas = reservas.filter(quitado=False)
+    if valor:
+        reservas = reservas.filter(stand__valor=valor)
+    if data_reserva:
+        reservas = reservas.filter(data_reserva=data_reserva)
+
     context ={
-        'reservas':reservas
+        'reservas': reservas
     }
     return render(request, 'stands/reserva.html',context)
 

@@ -7,6 +7,31 @@
 
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
+
+        <form class="form-inline" action="" method="GET">
+            <label class="sr-only" for="inlineFormInputName2">Nome</label>
+            <input type="text" class="form-control mb-5 mr-sm-2" id="inlineFormInputName2" placeholder="Nome da empresa"
+                name="nome_empresa">
+            <div class="form-check mb-5 mr-sm-2">
+                <input class="form-check-input m-2" type="checkbox" id="inlineFormCheck" value="True" name="quitado">
+                <label class="form-check-label" for="inlineFormCheck">
+                    Quitado
+                </label>
+                <input class="form-check-input m-2" type="checkbox" id="inlineFormCheck" value="False"
+                    name="naoquitado">
+                <label class="form-check-label" for="inlineFormCheck">
+                    Não quitado
+                </label>
+            </div>
+            <label class="sr-only" for="inlineFormInputName3">Valor</label>
+            <input type="text" class="form-control mb-5 mr-sm-2" id="inlineFormInputName3" placeholder="Valor do stand"
+                name="valor">
+            <label class="sr-only" for="inlineFormInputName4">Data</label>
+            <input type="date" class="form-control mb-5 mr-sm-2" id="inlineFormInputName4" placeholder="Data da reserva"
+                name="data_reserva">
+            <button type="submit" class="btn btn-primary mb-5">Buscar</button>
+        </form>
+
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             {% for reserva in reservas %}
             <div class="col mb-5">
