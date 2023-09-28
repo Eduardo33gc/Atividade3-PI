@@ -32,7 +32,7 @@
         </form>
 
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 row-cols-sx-1 justify-content-center">
-            {% for reserva in reservas %}
+            {% for reserva in pag_obj %}
             <div class="col mb-5">
                 <div class="card h-100">
                     <div class="card-body p-4">
@@ -57,6 +57,21 @@
             </div>
             {% endfor %}
         </div>
+        <ul class="pagination justify-content-center">
+                {% if pag_obj.has_previous %}
+                    <li class="page-item">
+                        <a href="?page={{ pag_obj.previous_page_number }}" class="page-link">Anterior</a>
+                    </li>
+                {% endif %}
+
+                {% for p in pag_obj.paginator.page_range %}
+                    <li class="page-item"><a class="page-link" href="#">{{ p }}</a></li>
+                {% endfor %}
+
+                {% if pag_obj.has_next %}
+                    <a href="?page={{ pag_obj.next_page_number }}" class="page-link">Próximo &raquo;</a>
+                {% endif %}
+        </ul>
     </div>
 </section>
 

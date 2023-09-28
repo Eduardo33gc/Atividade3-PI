@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Reserva
 from .forms import ReservaForm
-
+from django.core.paginator import Paginator
 
 def reserva_criar(request):
     if request.method == 'POST':
@@ -24,7 +24,6 @@ def reserva_listar(request):
     naoquitado = request.GET.get('naoquitado')
     data_reserva = request.GET.get('data_reserva')
 
-
     if nome_empresa:
         reservas = reservas.filter(
             nome_empresa__icontains=nome_empresa)
@@ -40,9 +39,17 @@ def reserva_listar(request):
     if data_reserva:
         reservas = reservas.filter(data_reserva=data_reserva)
 
+    paginator = Paginator(reservas, 2)
+
+    pagina = request.GET.get('page')
+
+    pag_obj = paginator.get_page(pagina)
+
     context ={
+	    'pag_obj': pag_obj,
         'reservas': reservas
     }
+
     return render(request, 'stands/index.html',context)
 
 def detalhe_reserva(request,id):
