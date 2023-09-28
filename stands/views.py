@@ -39,7 +39,7 @@ def reserva_listar(request):
     if data_reserva:
         reservas = reservas.filter(data_reserva=data_reserva)
 
-    paginator = Paginator(reservas, 2)
+    paginator = Paginator(reservas, 5)
 
     pagina = request.GET.get('page')
 

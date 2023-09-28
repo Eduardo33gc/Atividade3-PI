@@ -65,11 +65,11 @@
                 {% endif %}
 
                 {% for p in pag_obj.paginator.page_range %}
-                    <li class="page-item"><a class="page-link" href="#">{{ p }}</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
                 {% endfor %}
 
                 {% if pag_obj.has_next %}
-                    <a href="?page={{ pag_obj.next_page_number }}" class="page-link">Próximo &raquo;</a>
+                    <a href="?page={{ pag_obj.next_page_number }}" class="page-link">Próxima &raquo;</a>
                 {% endif %}
         </ul>
     </div>
