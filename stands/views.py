@@ -2,7 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Reserva
 from .forms import ReservaForm
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='/accounts/login/')
 def reserva_criar(request):
     if request.method == 'POST':
         form = ReservaForm(request.POST, request.FILES)
@@ -59,6 +61,7 @@ def detalhe_reserva(request,id):
     }
     return render(request,'stands/detalhe.html',context)
 
+@login_required(login_url='/accounts/login/')
 def reserva_edicao(request):
     reservas = Reserva.objects.all().order_by('data_reserva')
     nome_empresa = request.GET.get('nome_empresa')
@@ -88,6 +91,7 @@ def reserva_edicao(request):
     }
     return render(request, 'stands/reserva.html',context)
 
+@login_required(login_url='/accounts/login/')
 def reserva_editar(request,id):
     reserva = get_object_or_404(Reserva,id=id)
    
@@ -102,6 +106,7 @@ def reserva_editar(request,id):
 
     return render(request,"stands/form.html",{'form':form})
 
+@login_required(login_url='/accounts/login/')
 def reserva_remover(request, id):
     reserva = get_object_or_404(Reserva, id=id)
     reserva.delete()
